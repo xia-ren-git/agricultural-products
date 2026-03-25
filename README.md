@@ -118,7 +118,7 @@ agricultural-products/
 #### 1. 克隆项目
 
 ```bash
-git clone https://github.com/your-username/agricultural-products.git
+git clone https://github.com/xia-ren-git/agricultural-products.git
 cd agricultural-products
 ```
 
@@ -290,8 +290,8 @@ PUT  /api/order/status     # 更新订单状态
 
 如有问题或建议，欢迎通过以下方式联系：
 
-- 提交 Issue: [GitHub Issues](https://github.com/your-username/agricultural-products/issues)
-- 邮箱: your-email@example.com
+- 提交 Issue: [GitHub Issues](https://github.com/xia-ren-git/agricultural-products/issues)
+- 邮箱: 2728384506@qq.com
 
 ## 🙏 致谢
 
