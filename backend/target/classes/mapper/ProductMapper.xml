@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.agricultural.products.mapper.ProductMapper">
+    
+    <resultMap id="BaseResultMap" type="com.agricultural.products.entity.Product">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="category_name" property="categoryName"/>
+        <result column="description" property="description"/>
+        <result column="price" property="price"/>
+        <result column="stock" property="stock"/>
+        <result column="unit" property="unit"/>
+        <result column="origin" property="origin"/>
+        <result column="image" property="image"/>
+        <result column="status" property="status"/>
+        <result column="sales" property="sales"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+    
+    <select id="findByPage" resultMap="BaseResultMap">
+        SELECT p.*, c.name as category_name 
+        FROM product p 
+        LEFT JOIN category c ON p.category_id = c.id
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND p.name LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+        </where>
+        ORDER BY p.create_time DESC
+        LIMIT #{pageSize} OFFSET #{offset}
+    </select>
+    
+    <select id="searchProducts" resultMap="BaseResultMap">
+        SELECT p.*, c.name as category_name 
+        FROM product p 
+        LEFT JOIN category c ON p.category_id = c.id
+        <where>
+            p.status = 1
+            <if test="keyword != null and keyword != ''">
+                AND (p.name LIKE CONCAT('%', #{keyword}, '%') OR p.description LIKE CONCAT('%', #{keyword}, '%'))
+            </if>
+            <if test="categoryId != null">
+                AND p.category_id = #{categoryId}
+            </if>
+            <if test="minPrice != null">
+                AND p.price &gt;= #{minPrice}
+            </if>
+            <if test="maxPrice != null">
+                AND p.price &lt;= #{maxPrice}
+            </if>
+        </where>
+        <choose>
+            <when test="orderBy == 'sales'">
+                ORDER BY p.sales DESC
+            </when>
+            <when test="orderBy == 'price_asc'">
+                ORDER BY p.price ASC
+            </when>
+            <when test="orderBy == 'price_desc'">
+                ORDER BY p.price DESC
+            </when>
+            <otherwise>
+                ORDER BY p.create_time DESC
+            </otherwise>
+        </choose>
+        LIMIT #{pageSize} OFFSET #{offset}
+    </select>
+    
+    <select id="countSearchProducts" resultType="long">
+        SELECT COUNT(*)
+        FROM product p
+        <where>
+            p.status = 1
+            <if test="keyword != null and keyword != ''">
+                AND (p.name LIKE CONCAT('%', #{keyword}, '%') OR p.description LIKE CONCAT('%', #{keyword}, '%'))
+            </if>
+            <if test="categoryId != null">
+                AND p.category_id = #{categoryId}
+            </if>
+            <if test="minPrice != null">
+                AND p.price &gt;= #{minPrice}
+            </if>
+            <if test="maxPrice != null">
+                AND p.price &lt;= #{maxPrice}
+            </if>
+        </where>
+    </select>
+    
+    <update id="update" parameterType="com.agricultural.products.entity.Product">
+        UPDATE product
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="categoryId != null">category_id = #{categoryId},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="stock != null">stock = #{stock},</if>
+            <if test="unit != null">unit = #{unit},</if>
+            <if test="origin != null">origin = #{origin},</if>
+            <if test="image != null">image = #{image},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="sales != null">sales = #{sales},</if>
+            update_time = NOW()
+        </set>
+        WHERE id = #{id}
+    </update>
+    
+</mapper>

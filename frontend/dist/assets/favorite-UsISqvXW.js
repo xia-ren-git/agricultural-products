@@ -1,0 +1,1 @@
+import{v as e}from"./index-CEZWcHpf.js";function o(){return e.get("/favorite/list")}function a(t){return e.post("/favorite/add",{productId:t})}function i(t){return e.delete(`/favorite/${t}`)}function n(t){return e.get(`/favorite/check/${t}`)}export{a,n as c,o as g,i as r};

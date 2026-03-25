@@ -1,0 +1,1 @@
+import{v as r}from"./index-CEZWcHpf.js";function e(t){return r.get("/product/page",{params:t})}function o(t){return r.get(`/product/${t}`)}function c(t){return r.post("/product",t)}function d(t){return r.put("/product",t)}function n(t){return r.delete(`/product/${t}`)}function a(t){return r.get("/product/search",{params:t})}export{c as a,o as b,n as d,e as g,a as s,d as u};

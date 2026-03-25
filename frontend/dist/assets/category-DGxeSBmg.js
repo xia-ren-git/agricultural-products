@@ -1,0 +1,1 @@
+import{v as e}from"./index-CEZWcHpf.js";function a(){return e.get("/category/list")}function o(t){return e.get("/category/page",{params:t})}function g(t){return e.post("/category",t)}function n(t){return e.put("/category",t)}function u(t){return e.delete(`/category/${t}`)}export{g as a,a as b,u as d,o as g,n as u};
