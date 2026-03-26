@@ -2,6 +2,7 @@ D:\develop\project\agricultural-products\backend\src\main\java\com\agricultural\
 D:\develop\project\agricultural-products\backend\src\main\java\com\agricultural\products\service\ProductService.java
 D:\develop\project\agricultural-products\backend\src\main\java\com\agricultural\products\entity\Cart.java
 D:\develop\project\agricultural-products\backend\src\main\java\com\agricultural\products\entity\Review.java
+D:\develop\project\agricultural-products\backend\src\main\java\com\agricultural\products\config\JacksonConfig.java
 D:\develop\project\agricultural-products\backend\src\main\java\com\agricultural\products\controller\ReviewController.java
 D:\develop\project\agricultural-products\backend\src\main\java\com\agricultural\products\entity\Category.java
 D:\develop\project\agricultural-products\backend\src\main\java\com\agricultural\products\mapper\FavoriteMapper.java
